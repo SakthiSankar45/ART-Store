@@ -4,6 +4,7 @@ const Colors = {
     primary700: '#f9f105',
     primary800: '#07f426',
     primary900: '#2206f4',
+    placeholder: '#003f5c',
 }
 
 export default Colors;

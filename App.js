@@ -1,11 +1,16 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { StyleSheet, Text, View , Image, ImageBackground} from 'react-native';
+import { StyleSheet, View , Image} from 'react-native';
 import * as SplashScreen from 'expo-splash-screen';
 import * as Font from 'expo-font';
 import Entypo from '@expo/vector-icons/Entypo';
-import {LinearGradient} from 'expo-linear-gradient';
-import Imported from './constants/Imported';
 import { StatusBar } from 'expo-status-bar';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+
+import Window from './constants/Window';
+import LoginScreen from './screens/LoginScreen';
+import SignUpScreen from './screens/SignUpScreen';
+import Background from './components/Background';
 
 //Splash Screen Loading!..
 SplashScreen.preventAutoHideAsync();
@@ -39,54 +44,47 @@ export default function App() {
     return (
       <>
         <StatusBar style='light'/>
-        <LinearGradient colors= {[Imported.Colors.primary500, Imported.Colors.primary600]} style={styles.splash}>
-          <ImageBackground source={require('./assets/images/images.jpeg')} style={styles.splash} imageStyle= {styles.backGroundImage}>
-            <View style={styles.logoView}>
-              <Text style={styles.logoTxt}>ARTS <Text style={styles.innerLogoTxt}>Maligai Store</Text></Text>
+        <Background>
+          <View style={styles.logoView}>
+              <Image style={styles.logoImg} source={require('./assets/images/logo.png')}/>
             </View>
-          </ImageBackground>
-        </LinearGradient>
+        </Background>
       </>
     );
   }
 
 // Normal Application after LaunchScreen
+
+const Stack = createNativeStackNavigator();
+
 return (
-    <View
-      style={styles.container}
-      onLayout={onLayoutRootView}>
-      <Text>We Have Entered into the App!..</Text>
-    </View>
+  <View style={styles.container} onLayout={onLayoutRootView}>
+    <StatusBar style='light'/>
+    <NavigationContainer>
+      {/* <Stack.Navigator screenOptions={{headerShown: false}}> */}
+      <Stack.Navigator>
+        <Stack.Screen
+          name='Home'
+          component={LoginScreen}
+        />
+        <Stack.Screen name='SignUp' component={SignUpScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  </View>
   );
 }
 
 const styles = StyleSheet.create({
-  splash:{
-    flex: 1, 
-    width: null,
-    height: null,
-  },
-  backGroundImage:{
-    opacity: 0.15
-  },
   logoView:{
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },
-  logoTxt:{
-    color: Imported.Colors.primary700,
-    fontSize: Imported.Window.isWeb ? 60 : 30,
-    fontFamily: Imported.Window.isIOS ? 'Futura' : 'Roboto',
-    fontWeight: 'bold',
-  },
-  innerLogoTxt:{
-    color: Imported.Colors.primary800,
-    fontSize: Imported.Window.isWeb ? 40 : 20,
+  logoImg:{
+    width: Window.isWeb ? 500 : 250,
+    height: Window.isWeb ? 500 : 250,
   },
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 });
