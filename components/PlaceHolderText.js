@@ -4,9 +4,9 @@ import React, { useState } from 'react';
 import Colors from "../constants/Colors";
 import Window from "../constants/Window";
 
-function PlaceHolderText({placeHolder, isPwd}){
+function PlaceHolderText({placeHolder, isPwd, lastNameRef}){
 
-    const [state,setState] = useState({email: '',password: ''});
+    const [inputValue, setInputValue] = useState('');
 
     if(isPwd){
         return(
@@ -16,7 +16,7 @@ function PlaceHolderText({placeHolder, isPwd}){
                 style={styles.inputText} 
                 placeholder={placeHolder} 
                 placeholderTextColor={Colors.placeholder} 
-                onChangeText={text => setState({email:text})}
+                onChangeText={text => setInputValue(text)}
                 />
             </View>
         );
@@ -27,7 +27,12 @@ function PlaceHolderText({placeHolder, isPwd}){
                 style={styles.inputText} 
                 placeholder={placeHolder} 
                 placeholderTextColor={Colors.placeholder} 
-                onChangeText={text => setState({email:text})}
+                onChangeText={text => setInputValue(text)}
+                // defaultValue=""
+                // ref={lastNameRef}
+                // onSubmitEditing={() => {
+                //     lastNameRef.current.focus();
+                // }}
                 />
             </View>
         );

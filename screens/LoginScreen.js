@@ -1,4 +1,5 @@
 import { View, StyleSheet, Pressable, Text} from "react-native";
+import React, { useState, useRef, Children } from 'react'; 
 
 import Background from "../components/Background";
 import PlaceHolderText from "../components/PlaceHolderText";
@@ -10,12 +11,13 @@ function onPressForgotPassword(){
 }
 
 function onPressLogin(){
-
+    console.log('Hi');
 }
 
 function LoginScreen({navigation}){
 
-    // const [state,setState] = useState({email: '',password: ''});
+    const [state,setState] = useState({email: '',password: ''});
+    const lastNameRef = useRef();
 
     function onPressSignUp(){
         return(
@@ -26,7 +28,9 @@ function LoginScreen({navigation}){
         <Background>
         <View style={styles.container}>
             <LogoAndTxt title={"Login"}/>
-            <PlaceHolderText placeHolder={"Email"}/>
+            {/* //setState({email:text}) */}
+            <PlaceHolderText placeHolder={"Email"} />
+            {/* //lastNameRef={lastNameRef} */}
             <PlaceHolderText placeHolder={"Password"} isPwd={true}/>
             <Pressable onPress = {onPressForgotPassword}>
                 <Text style={styles.forgotAndSignUpText}>Forgot Password?</Text>

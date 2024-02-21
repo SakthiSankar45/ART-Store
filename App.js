@@ -8,6 +8,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import Window from './constants/Window';
+import Colors from './constants/Colors';
 import LoginScreen from './screens/LoginScreen';
 import SignUpScreen from './screens/SignUpScreen';
 import Background from './components/Background';
@@ -61,8 +62,7 @@ return (
   <View style={styles.container} onLayout={onLayoutRootView}>
     <StatusBar style='light'/>
     <NavigationContainer>
-      {/* <Stack.Navigator screenOptions={{headerShown: false}}> */}
-      <Stack.Navigator>
+      <Stack.Navigator screenOptions={{ headerTransparent: true , headerTitle: "", headerTintColor: Colors.primary700}}>
         <Stack.Screen
           name='Home'
           component={LoginScreen}
