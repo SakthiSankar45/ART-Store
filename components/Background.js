@@ -22,8 +22,8 @@ export default Background;
 const styles = StyleSheet.create({
     splash:{
         flex: 1, 
-        width: null,
-        height: null,
+        width: '100%',
+        height: '100%',
       },
       backGroundImage:{
         opacity: 0.3
